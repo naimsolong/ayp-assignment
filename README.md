@@ -55,7 +55,11 @@ The only requirement is install [Docker](https://docs.docker.com/)
     docker compose up --build -d
     ```
 
-4. To run a command inside docker container
+4. After the container is running, then you can access this web app by ```localhost:8000```
+
+### **Additional Note**
+
+1. To run a command inside docker container
     ```
     docker exec -it ayp-app /bin/bash
     ```
