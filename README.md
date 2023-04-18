@@ -63,3 +63,29 @@ The only requirement is install [Docker](https://docs.docker.com/)
     ```
     docker exec -it ayp-app /bin/bash
     ```
+
+2. There are a few things you can do when running command inside docker container
+
+    2.1 Get current environment configuration
+
+    ```
+    php artisan about
+    ```
+
+    2.2 Access into DB
+
+    ```
+    php artisan db
+    ```
+
+    2.3 Get available route
+
+    ```
+    php artisan route:list
+    ```
+
+    2.4 Run test
+
+    ```
+    php artisan test
+    ```
