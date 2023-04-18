@@ -3,7 +3,7 @@
 <p  align="right"><a  href="https://laravel.com"  target="_blank"><img  src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg"  width="150"></a>
 </p>
 
-## Assignment background
+## **Assignment background**
 
 By using Laravel version 10 is required to develop a simple claim submission module
 WITHOUT user login module. The claim submission modules consist of two major sub-modules:
@@ -15,30 +15,30 @@ expect to see the details
 
 Side note: This system is not expecting any approval level at this point, meaning can just update the status directly from database.
 
-## Technology stack used
+## **Technology stack used**
 
 - [Laravel](https://laravel.com)
 - [InertiaJS](https://inertiajs.com/)
 - [Svelte](https://svelte.dev/)
 
-## Additional packages used
+## **Additional packages used**
 
-### Composer
+### **Composer**
 
 - [Laravel Octane](https://laravel.com/docs/10.x/octane)
 - [Spatie Ray](https://spatie.be/docs/ray/v1/introduction)
 
-### NPM
+### **NPM**
 
 - [Chokidar](https://github.com/paulmillr/chokidar)
 ---
-## Getting Started
+## **Getting Started**
 
-### Requirements
+### **Requirements**
 
-The only requirement is to install [Docker](https://docs.docker.com/)
+The only requirement is install [Docker](https://docs.docker.com/)
 
-### Installation
+### **Installation**
 
 1. Clone this repo
     ```
@@ -50,14 +50,12 @@ The only requirement is to install [Docker](https://docs.docker.com/)
     cp .env.example .env
     ```
 
-### Running docker
-
-1. Build the docker image and run container
+3. Build the docker image and run container
     ```
     docker compose up --build -d
     ```
 
-2. To run a command inside docker container
+4. To run a command inside docker container
     ```
     docker exec -it ayp-app /bin/bash
     ```
