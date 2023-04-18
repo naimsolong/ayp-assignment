@@ -1,0 +1,63 @@
+version: '3'
+services:
+
+    app:
+        build:
+            context: ./docker/local
+            dockerfile: Dockerfile
+        image: ayp-8.1/app
+        container_name: ayp-app
+        extra_hosts:
+            - 'host.docker.internal:host-gateway'
+            - 'host.docker.ray:host-gateway'
+        ports:
+            - '${APP_PORT:-8000}:8000'
+            - '${VITE_PORT:-5173}:${VITE_PORT:-5173}'
+        volumes:
+            - './:/var/www/ayp-assignment'
+        networks:
+            - ayp-network
+        depends_on:
+            - redis
+            - mysql
+
+    # MySQL database
+    mysql:
+        image: 'mysql/mysql-server:8.0'
+        container_name: ayp-database
+        ports:
+            - '${FORWARD_DB_PORT:-3306}:3306'
+        environment:
+            MYSQL_ROOT_PASSWORD: '${DB_PASSWORD:-password}'
+            MYSQL_ROOT_HOST: '%'
+            MYSQL_ALLOW_EMPTY_PASSWORD: 1
+        volumes:
+            - 'ayp-mysql-volume:/var/lib/mysql'
+            - './docker/script/01-database.sql:/docker-entrypoint-initdb.d/01-database.sql'
+        networks:
+            - ayp-network
+        healthcheck:
+            test: ["CMD", "mysqladmin", "ping", "-p${DB_PASSWORD:-dbpassword}"]
+            retries: 3
+            timeout: 5s
+
+    # Redis Server
+    redis:
+        image: redis:alpine
+        container_name: ayp-redis
+        command: redis-server --appendonly yes --requirepass  "${REDIS_PASSWORD:-password}"
+        ports: 
+            - '${REDIS_PORT:-6379}:6379'
+        volumes:
+            - 'ayp-redis-volume:/data'
+        networks:
+            - ayp-network
+
+networks:
+    ayp-network:
+        driver: bridge
+volumes:
+    ayp-redis-volume:
+        driver: local
+    ayp-mysql-volume:
+        driver: local
