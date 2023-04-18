@@ -1,4 +1,7 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+<p  align="right">
+<a  href="https://ayp-group.com/"  target="_blank"><img  src="https://media.licdn.com/dms/image/C560BAQG3LseHRrTLdQ/company-logo_200_200/0/1611567176258?e=2147483647&v=beta&t=pNnzj5v1870TJpsS0oWNo0PtKMbxqFmRmOGI14740pk"  width="140"></a></p>
+<p  align="right"><a  href="https://laravel.com"  target="_blank"><img  src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg"  width="150"></a>
+</p>
 
 ## Assignment background
 
