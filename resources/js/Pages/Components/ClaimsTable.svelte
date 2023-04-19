@@ -50,7 +50,11 @@
                     {row.display_status}
                 </td>
                 <td class="px-6 py-4 text-right">
+                    {#if row.status == 'D' && row.submitted_at == null}
                     <a href="/" class="font-medium text-blue-600 hover:underline">Edit</a>
+                    {:else}
+                    <span class="font-medium text-grey-600">Edit</span>
+                    {/if}
                 </td>
             </tr>
             {:else}
