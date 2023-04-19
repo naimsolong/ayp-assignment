@@ -23,12 +23,12 @@ Side note: This system is not expecting any approval level at this point, meanin
 
 ## **Additional packages used**
 
-### **Composer**
+
 
 - [Laravel Octane](https://laravel.com/docs/10.x/octane)
 - [Spatie Ray](https://spatie.be/docs/ray/v1/introduction)
 
-### **NPM**
+- [TailwindCSS](https://tailwindcss.com)
 
 - [Chokidar](https://github.com/paulmillr/chokidar)
 
