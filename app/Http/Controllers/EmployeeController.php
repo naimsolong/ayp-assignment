@@ -31,6 +31,7 @@ class EmployeeController extends Controller
             'type', 'date', 'description'
         ])->toArray());
 
+        // TODO: Redirect back
         return redirect('/dashboard/employee');
     }
     
@@ -55,6 +56,7 @@ class EmployeeController extends Controller
             'type', 'date', 'description'
         ])->toArray());
 
+        // TODO: Redirect back
         return redirect('/dashboard/employee');
     }
     
