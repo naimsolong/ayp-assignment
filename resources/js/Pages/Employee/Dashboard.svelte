@@ -6,5 +6,5 @@
 </script>
 
 <Layout title="Employee's Dashboard" current_navigation="employee_dashboard">
-    <Table data={claims} />
+    <Table data={claims} edit_url="/dashboard/employee/edit/"/>
 </Layout>
