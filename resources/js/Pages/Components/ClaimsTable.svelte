@@ -45,7 +45,7 @@
                     {row.description}
                 </td>
                 <td class="px-6 py-4">
-                    {row.date}
+                    {row.display_date}
                 </td>
                 <td class="px-6 py-4 {statusBackgroundColor(row.status)} font-bold">
                     {row.display_status}

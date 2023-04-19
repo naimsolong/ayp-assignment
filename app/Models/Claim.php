@@ -25,7 +25,7 @@ class Claim extends Model
     protected $casts = [
         'type' => ClaimTypeEnum::class,
         'description' => 'string',
-        'date' => 'date:d-m-Y',
+        'date' => 'date:Y-m-d',
         'status' => ClaimStatusEnum::class,
         'submitted_at' => 'datetime',
         'approved_at' => 'datetime',
@@ -34,6 +34,7 @@ class Claim extends Model
     
     protected $appends = [
         'display_type',
+        'display_date',
         'display_status'
     ];
 
@@ -45,6 +46,11 @@ class Claim extends Model
     public function getDisplayTypeAttribute()
     {
         return $this->type->description();
+    }
+
+    public function getDisplayDateAttribute()
+    {
+        return $this->date->format('d-m-Y');
     }
 
     public function getDisplayStatusAttribute()
