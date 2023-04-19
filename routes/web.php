@@ -26,6 +26,8 @@ Route::get('/test', function () {
 Route::prefix('dashboard')->group(function() {
     Route::prefix('employee')->controller(EmployeeController::class)->group(function() {
         Route::get('/', 'dashboard');
+
+        Route::get('/submit', 'submit');
     });
 
     Route::prefix('admin')->controller(AdminController::class)->group(function() {

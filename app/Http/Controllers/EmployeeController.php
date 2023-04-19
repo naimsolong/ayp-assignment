@@ -11,4 +11,9 @@ class EmployeeController extends Controller
     {
         return Inertia::render('Employee/Dashboard');
     }
+    
+    public function submit()
+    {
+        return Inertia::render('Employee/Submit');
+    }
 }

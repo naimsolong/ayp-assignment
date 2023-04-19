@@ -19,6 +19,11 @@ export default defineConfig({
             preprocess: sveltePreprocess()
         })
     ],
+    resolve: {
+        alias: {
+            '~Layouts': '/resources/js/Pages/Layouts',
+        },
+    },
     server: { 
         host, 
         hmr: { host }, 

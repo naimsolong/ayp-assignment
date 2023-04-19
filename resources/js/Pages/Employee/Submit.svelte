@@ -2,6 +2,6 @@
     import Layout from "~Layouts/Employee.svelte"
 </script>
 
-<Layout title="Employee's Dashboard" current_navigation="employee_dashboard">
+<Layout title="Submit Claim" current_navigation="employee_claim">
     This is dashboard page
 </Layout>

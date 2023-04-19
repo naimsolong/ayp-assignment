@@ -10,6 +10,10 @@ test('Employee Dashboard page return correct Svelte file', function () {
     $this->get('/dashboard/employee')->assertInertia(fn (Assert $page) => $page->component('Employee/Dashboard'));
 });
 
+test('Employee Dashboard page return correct Svelte file', function () {
+    $this->get('/dashboard/employee/submit')->assertInertia(fn (Assert $page) => $page->component('Employee/Submit'));
+});
+
 test('Admin Dashboard page return correct Svelte file', function () {
     $this->get('/dashboard/admin')->assertInertia(fn (Assert $page) => $page->component('Admin/Dashboard'));
 });
