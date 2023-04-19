@@ -53,7 +53,7 @@
                 <td class="px-6 py-4 {statusBackgroundColor(row.status)} font-bold">
                     {row.display_status}
                 </td>
-                <td class="px-6 py-4 {statusBackgroundColor(row.status)} font-bold">
+                <td class="px-6 py-4">
                     {row.amount}
                 </td>
                 <td class="px-6 py-4 text-right">
