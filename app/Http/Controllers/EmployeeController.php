@@ -72,8 +72,6 @@ class EmployeeController extends Controller
                 return $item;
         })->only([
             'type', 'date', 'description', 'amount'
-        ])->merge([
-            'submitted_at' => now()
         ])->toArray());
 
         // TODO: Redirect back
@@ -90,6 +88,8 @@ class EmployeeController extends Controller
                 return $item;
         })->only([
             'type', 'date', 'description', 'amount'
+        ])->merge([
+            'submitted_at' => now()
         ])->toArray());
 
         // TODO: Redirect back
