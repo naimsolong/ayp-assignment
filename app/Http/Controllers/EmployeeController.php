@@ -12,7 +12,7 @@ class EmployeeController extends Controller
 {
     public function dashboard()
     {
-        $claim = Claim::select('id', 'type', 'description', 'date', 'status', 'submitted_at')->orderByDesc('date')->paginate(5);
+        $claim = Claim::select('id', 'type', 'description', 'date', 'status', 'submitted_at')->orderByDesc('date')->paginate(10);
         
         return Inertia::render('Employee/Dashboard', [
             'claims' => $claim
