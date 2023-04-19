@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Enums\ClaimTypeEnum;
+use App\Http\Requests\ClaimSubmissionRequest;
 use App\Models\Claim;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
@@ -16,9 +18,22 @@ class EmployeeController extends Controller
             'claims' => $claim
         ]);
     }
+
+    public function claimSubmission(ClaimSubmissionRequest $request)
+    {
+        Claim::create($request->only([
+            'type', 'date', 'description'
+        ]));
+
+        return redirect('/dashboard/employee');
+    }
     
     public function submit()
     {
-        return Inertia::render('Employee/Submit');
+        $types = ClaimTypeEnum::dropdown();
+
+        return Inertia::render('Employee/Submit', [
+            'types' => $types
+        ]);
     }
 }

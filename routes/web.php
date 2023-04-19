@@ -28,6 +28,8 @@ Route::prefix('dashboard')->group(function() {
         Route::get('/', 'dashboard');
 
         Route::get('/submit', 'submit');
+
+        Route::post('/submit', 'claimSubmission');
     });
 
     Route::prefix('admin')->controller(AdminController::class)->group(function() {
