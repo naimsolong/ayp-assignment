@@ -60,9 +60,9 @@ jobs:
         php artisan key:generate
         php artisan migrate
         php artisan db:seed
-        php artisan clear-compiled
-        php artisan optimize
         php artisan config:cache
         php artisan route:clear
+        php artisan optimize
         php artisan about
+        php artisan serve --port=8000
         php artisan test
