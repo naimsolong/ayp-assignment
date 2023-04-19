@@ -3,6 +3,7 @@
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\BaseController;
 use App\Http\Controllers\EmployeeController;
+use App\Http\Middleware\AllowEditDraftMiddleware;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 
@@ -31,9 +32,11 @@ Route::prefix('dashboard')->group(function() {
 
         Route::post('/submit', 'claimSubmission');
 
-        Route::get('/edit/{claim}', 'edit');
-
-        Route::put('/edit/{claim}', 'claimResubmit');
+        Route::middleware(AllowEditDraftMiddleware::class)->group(function() {
+            Route::get('/edit/{claim}', 'edit');
+    
+            Route::put('/edit/{claim}', 'claimResubmit');
+        });
     });
 
     Route::prefix('admin')->controller(AdminController::class)->group(function() {
