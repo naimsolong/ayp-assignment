@@ -127,13 +127,13 @@ From here there are four status:
 - Approval
 - Rejected
 
-As you can see only for Draft status claim, there are blue button that employee is able to edit it again. The edit page is similar to Submit Claim page.
+As you can see only for Draft status claim, there are blue button that allow employee to edit claim again. The edit page is similar to Submit Claim page.
 
 ![employee](./.github/images/2.0_employee.jpg)
 
 This is Submit Claim where employee is allow to do claim submission. You are required to fill in for type, date and amount input field, whereas description is optional.
 
-Please do note that there to button:
+Please do note that there two button:
 - Draft button: Allow employee to create draft of claim submission
 - Submit button: Finalize claim submission and won't be able to edit again
 
