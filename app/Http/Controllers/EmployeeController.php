@@ -19,7 +19,7 @@ class EmployeeController extends Controller
         ]);
     }
 
-    public function claimSubmission(ClaimSubmissionRequest $request)
+    public function claimDrafting(ClaimSubmissionRequest $request)
     {
         // Had to transform due Svelte will return null if value is empty string *facepalm*
         Claim::create($request->collect()->transform(function($item, $key) {
@@ -34,6 +34,24 @@ class EmployeeController extends Controller
         // TODO: Redirect back
         return redirect('/dashboard/employee');
     }
+
+    public function claimSubmission(ClaimSubmissionRequest $request)
+    {
+        // Had to transform due Svelte will return null if value is empty string *facepalm*
+        Claim::create($request->collect()->transform(function($item, $key) {
+            if($key == 'description' && is_null($item)) 
+                return '';
+            else
+                return $item;
+        })->only([
+            'type', 'date', 'description', 'amount'
+        ])->merge([
+            'submitted_at' => now()
+        ])->toArray());
+
+        // TODO: Redirect back
+        return redirect('/dashboard/employee');
+    }
     
     public function submit()
     {
@@ -42,6 +60,24 @@ class EmployeeController extends Controller
         return Inertia::render('Employee/Submit', [
             'types' => $types
         ]);
+    }
+
+    public function claimRedraft(Claim $claim, ClaimSubmissionRequest $request)
+    {
+        // Had to transform due Svelte will return null if value is empty string *facepalm*
+        $claim->update($request->collect()->transform(function($item, $key) {
+            if($key == 'description' && is_null($item)) 
+                return '';
+            else
+                return $item;
+        })->only([
+            'type', 'date', 'description', 'amount'
+        ])->merge([
+            'submitted_at' => now()
+        ])->toArray());
+
+        // TODO: Redirect back
+        return redirect('/dashboard/employee');
     }
 
     public function claimResubmit(Claim $claim, ClaimSubmissionRequest $request)

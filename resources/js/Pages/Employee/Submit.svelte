@@ -11,13 +11,16 @@
         amount: 0
     }
 
-    let handleSubmit = () => {
-        router.post('/dashboard/employee/submit', values)
+    let handleSubmit = (submit = false) => {
+        if(submit)
+            router.post('/dashboard/employee/submit', values)
+        else
+            router.post('/dashboard/employee/draft', values)
     }
 </script>
 
 <Layout title="Submit Claim" current_navigation="employee_claim">
-    <form on:submit|preventDefault|stopPropagation={handleSubmit}>
+    <form on:submit|preventDefault|stopPropagation>
         <div class="grid gap-6 mb-6 md:grid-cols-2">
             <div>
                 <label for="type" class="block mb-2 text-sm font-medium text-gray-900">Type (required)</label>
@@ -41,6 +44,7 @@
             <label for="amount" class="block mb-2 text-sm font-medium text-gray-900">Amount (required)</label>
             <input type="number" id="amount" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" placeholder="Amount" bind:value={values.amount}>
         </div>
-        <button type="submit" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center">Submit</button>
+        <button type="button" class="text-white bg-gray-700 hover:bg-gray-800 focus:ring-4 focus:outline-none focus:ring-gray-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center" on:click|preventDefault|stopPropagation={() => {handleSubmit(false)}}>Draft</button>
+        <button type="button" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center" on:click|preventDefault|stopPropagation={() => {handleSubmit(true)}}>Submit</button>
     </form>
 </Layout>

@@ -30,12 +30,16 @@ Route::prefix('dashboard')->group(function() {
 
         Route::get('/submit', 'submit');
 
+        Route::post('/draft', 'claimDrafting');
+
         Route::post('/submit', 'claimSubmission');
 
         Route::middleware(AllowEditDraftMiddleware::class)->group(function() {
             Route::get('/edit/{claim}', 'edit');
     
-            Route::put('/edit/{claim}', 'claimResubmit');
+            Route::put('/draft/{claim}', 'claimRedraft');
+    
+            Route::put('/submit/{claim}', 'claimResubmit');
         });
     });
 
