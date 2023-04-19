@@ -3,12 +3,12 @@
 namespace App\Enums\Traits;
 
 use ArchTech\Enums\{
-    Metadata, InvokableCases, Names, Values
+    InvokableCases, From, Names, Values
 };
 
 trait Dropdown
 {
-    use InvokableCases, Names, Values;
+    use InvokableCases, From, Names, Values;
 
     /**
      * Get data for dropdown <selectbox>
