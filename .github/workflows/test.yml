@@ -42,7 +42,7 @@ jobs:
       uses: shivammathur/setup-php@v2
       with:
         php-version: ${{ matrix.php }}
-        extensions: cli, curl, imap, mysql, mbstring, common, xml, zip, bcmath, soap, intl, imagick, redis, swoole, memcached, pcov, xdebug
+        extensions: cli, dom, curl, libxml, imap, mysql, mbstring, common, xml, zip, pcntl, pdo, sqlite, pdo_sqlite, bcmath, soap, intl, gd, exif, iconv, imagick, gmp, redis, swoole, memcached, pcov, xdebug
         coverage: none
 
     - name: Install NPM/Composer Dependencies and compile assets
