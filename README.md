@@ -31,7 +31,9 @@ Side note: This system is not expecting any approval level at this point, meanin
 ### **NPM**
 
 - [Chokidar](https://github.com/paulmillr/chokidar)
+
 ---
+
 ## **Getting Started**
 
 ### **Requirements**
@@ -95,3 +97,69 @@ The only requirement is install [Docker](https://docs.docker.com/)
     ```
     php artisan test
     ```
+
+---
+
+## **Guideline**
+
+### **Base page**
+
+Here is the base page where you can access as employee or admin.
+
+As an employee, you are able to:
+- Submit claim
+- Check claim's status and details
+
+As an admin, you are able to:
+- View employee's claim
+- Approve or reject claim
+
+![base](./.github/images/1.0_base.jpg)
+
+### **Employee page**
+
+
+By clicking blue card from base page, you are able to see employee dashboard point of view.
+
+From here there are four status:
+- Draft
+- Waiting for approval
+- Approval
+- Rejected
+
+As you can see only for Draft status claim, there are blue button that employee is able to edit it again. The edit page is similar to Submit Claim page.
+
+![employee](./.github/images/2.0_employee.jpg)
+
+This is Submit Claim where employee is allow to do claim submission. You are required to fill in for type, date and amount input field, whereas description is optional.
+
+Please do note that there to button:
+- Draft button: Allow employee to create draft of claim submission
+- Submit button: Finalize claim submission and won't be able to edit again
+
+These button has same function when editing the claim.
+
+![employee](./.github/images/2.1_employee.jpg)
+
+### **Admin page**
+
+
+Next, by clicking red card from base page, you are able to see admin dashboard point of view.
+
+From here there four tab to filter out the claim based on status:
+- All
+- Draft
+- Approved
+- Rejected
+
+![admin](./.github/images/3.0_admin.jpg)
+
+For the Claim Approval page, the list of submitted claim is in card form. Once you click either Reject or Approve button, the selected card will disappear.
+
+![admin](./.github/images/3.1_admin.jpg)
+
+---
+
+That would be all, thank you!
+
+If you have any question, feel free to ask.
