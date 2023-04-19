@@ -33,9 +33,11 @@
                 <th scope="col" class="px-6 py-3">
                     Amount
                 </th>
+                {#if edit_url != ''}
                 <th scope="col" class="px-6 py-3">
                     <span class="sr-only">Edit</span>
                 </th>
+                {/if}
             </tr>
         </thead>
         <tbody>
@@ -56,17 +58,19 @@
                 <td class="px-6 py-4">
                     {row.amount}
                 </td>
+                {#if edit_url != ''}
                 <td class="px-6 py-4 text-right">
-                    {#if edit_url != '' && row.status == 'D' && row.submitted_at == null}
+                    {#if row.status == 'D' && row.submitted_at == null}
                     <a href="{edit_url+row.id}" use:inertia class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5">Edit</a>
                     {:else}
                     <span class="text-white bg-gray-400 cursor-not-allowed font-medium rounded-lg text-sm px-5 py-2.5 text-center" disabled>Edit</span>
                     {/if}
                 </td>
+                {/if}
             </tr>
             {:else}
             <tr class="bg-white border-b hover:bg-blue-50">
-                <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap" colspan="6">
+                <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap" colspan="{edit_url != '' ? 5 : 6}">
                     No data available
                 </th>
             </tr>
