@@ -45,5 +45,7 @@ Route::prefix('dashboard')->group(function() {
 
     Route::prefix('admin')->controller(AdminController::class)->group(function() {
         Route::get('/', 'dashboard');
+
+        Route::get('/approval', 'approval');
     });
 });

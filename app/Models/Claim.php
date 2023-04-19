@@ -37,7 +37,8 @@ class Claim extends Model
     protected $appends = [
         'display_type',
         'display_date',
-        'display_status'
+        'display_status',
+        'display_submitted_at'
     ];
 
     public function getDisplayTypeAttribute()
@@ -47,7 +48,7 @@ class Claim extends Model
 
     public function getDisplayDateAttribute()
     {
-        return $this->date->format('d-m-Y');
+        return $this->date->format('d/m/Y');
     }
 
     public function getDisplayStatusAttribute()
@@ -56,6 +57,11 @@ class Claim extends Model
             return 'Draft';
             
         return $this->status->description();
+    }
+
+    public function getDisplaySubmittedAtAttribute()
+    {
+        return is_null($this->submitted_at) ? '-' : $this->submitted_at->format('d/m/Y h:m A');
     }
 
     public function submitted(): void

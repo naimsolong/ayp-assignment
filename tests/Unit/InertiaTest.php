@@ -21,4 +21,5 @@ test('Employee Dashboard page return correct Svelte file', function () {
 
 test('Admin Dashboard page return correct Svelte file', function () {
     $this->get('/dashboard/admin')->assertInertia(fn (Assert $page) => $page->component('Admin/Dashboard'));
+    $this->get('/dashboard/admin/approval')->assertInertia(fn (Assert $page) => $page->component('Admin/Approval'));
 });

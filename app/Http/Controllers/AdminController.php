@@ -29,4 +29,32 @@ class AdminController extends Controller
             'claims' => $claim->paginate(10)->appends(['tab' => $tab])
         ]);
     }
+    
+    public function approval()
+    {            
+        $claims = Claim::select('id', 'type', 'description', 'date', 'amount', 'status', 'submitted_at')->orderBy('date')->whereStatus(ClaimStatusEnum::DRAFT)->whereNotNull('submitted_at')->get();
+
+        return Inertia::render('Admin/Approval', [
+            'claims' => $claims
+        ]);
+    }
+
+    public function claimApprove(Claim $claim)
+    {
+        $claim->approved();
+
+        return response()->json([
+            'message' => 'ok'
+        ]);
+    }
+
+    public function claimReject(Claim $claim)
+    {
+        $claim->rejected();
+
+        return response()->json([
+            'message' => 'ok'
+        ]);
+    }
+
 }
