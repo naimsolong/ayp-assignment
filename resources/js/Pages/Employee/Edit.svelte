@@ -9,9 +9,9 @@
 
     let handleSubmit = (submit = false) => {
         if(submit)
-            router.put('/dashboard/employee/draft/'+claim.id, values)
-        else
             router.put('/dashboard/employee/submit/'+claim.id, values)
+        else
+            router.put('/dashboard/employee/draft/'+claim.id, values)
     }
 </script>
 
