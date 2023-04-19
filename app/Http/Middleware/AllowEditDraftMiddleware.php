@@ -16,7 +16,7 @@ class AllowEditDraftMiddleware
      */
     public function handle(Request $request, Closure $next): Response
     {
-        if($request->claim->status != ClaimStatusEnum::DRAFT->value && !is_null($request->claim->submitted_at))
+        if($request->claim->status != ClaimStatusEnum::DRAFT && !is_null($request->claim->submitted_at))
             return abort(403, 'Not Allow');
             
         return $next($request);
