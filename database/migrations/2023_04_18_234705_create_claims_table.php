@@ -18,7 +18,7 @@ return new class extends Migration
             $table->id();
 
             $table->enum('type', ClaimTypeEnum::values());
-            $table->string('description')->nullable();
+            $table->string('description')->nullable()->default('');
             $table->date('date');
             $table->enum('status', ClaimStatusEnum::values())->default(ClaimStatusEnum::DRAFT->value);
 

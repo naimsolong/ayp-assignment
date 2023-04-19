@@ -21,9 +21,15 @@ class EmployeeController extends Controller
 
     public function claimSubmission(ClaimSubmissionRequest $request)
     {
-        Claim::create($request->only([
+        // Had to transform due Svelte will return null if value is empty string *facepalm*
+        Claim::create($request->collect()->transform(function($item, $key) {
+            if($key == 'description' && is_null($item)) 
+                return '';
+            else
+                return $item;
+        })->only([
             'type', 'date', 'description'
-        ]));
+        ])->toArray());
 
         return redirect('/dashboard/employee');
     }

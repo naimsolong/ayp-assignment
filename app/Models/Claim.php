@@ -38,11 +38,6 @@ class Claim extends Model
         'display_status'
     ];
 
-    public function getDescriptionAttribute()
-    {
-        return $this->description ?? '-';
-    }
-
     public function getDisplayTypeAttribute()
     {
         return $this->type->description();
