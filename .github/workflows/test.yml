@@ -63,6 +63,5 @@ jobs:
         php artisan clear-compiled
         php artisan config:clear
         php artisan route:clear
-        php artisan optimize
         php artisan about
         php artisan test
