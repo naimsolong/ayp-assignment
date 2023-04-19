@@ -66,7 +66,7 @@
             </tr>
             {:else}
             <tr class="bg-white border-b hover:bg-blue-50">
-                <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap" colspan="5">
+                <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap" colspan="6">
                     No data available
                 </th>
             </tr>
