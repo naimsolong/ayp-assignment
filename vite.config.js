@@ -21,6 +21,7 @@ export default defineConfig({
     ],
     resolve: {
         alias: {
+            '~Components': '/resources/js/Pages/Components',
             '~Layouts': '/resources/js/Pages/Layouts',
         },
     },

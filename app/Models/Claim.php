@@ -25,12 +25,30 @@ class Claim extends Model
     protected $casts = [
         'type' => ClaimTypeEnum::class,
         'description' => 'string',
-        'date' => 'date',
+        'date' => 'date:d-m-Y',
         'status' => ClaimStatusEnum::class,
         'submitted_at' => 'datetime',
         'approved_at' => 'datetime',
         'rejected_at' => 'datetime',
     ];
+    
+    protected $appends = [
+        'display_type',
+        'display_status'
+    ];
+
+    public function getDisplayTypeAttribute()
+    {
+        return $this->type->description();
+    }
+
+    public function getDisplayStatusAttribute()
+    {
+        if($this->status == ClaimStatusEnum::DRAFT && is_null($this->submitted_at))
+            return 'Draft';
+            
+        return $this->status->description();
+    }
 
     public function submitted(): void
     {
