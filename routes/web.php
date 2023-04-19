@@ -30,6 +30,10 @@ Route::prefix('dashboard')->group(function() {
         Route::get('/submit', 'submit');
 
         Route::post('/submit', 'claimSubmission');
+
+        Route::get('/edit/{claim}', 'edit');
+
+        Route::put('/edit/{claim}', 'claimResubmit');
     });
 
     Route::prefix('admin')->controller(AdminController::class)->group(function() {

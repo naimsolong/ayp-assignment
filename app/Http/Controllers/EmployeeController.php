@@ -42,4 +42,29 @@ class EmployeeController extends Controller
             'types' => $types
         ]);
     }
+
+    public function claimResubmit(Claim $claim, ClaimSubmissionRequest $request)
+    {
+        // Had to transform due Svelte will return null if value is empty string *facepalm*
+        $claim->update($request->collect()->transform(function($item, $key) {
+            if($key == 'description' && is_null($item)) 
+                return '';
+            else
+                return $item;
+        })->only([
+            'type', 'date', 'description'
+        ])->toArray());
+
+        return redirect('/dashboard/employee');
+    }
+    
+    public function edit(Claim $claim)
+    {
+        $types = ClaimTypeEnum::dropdown();
+
+        return Inertia::render('Employee/Edit', [
+            'claim' => $claim,
+            'types' => $types
+        ]);
+    }
 }
