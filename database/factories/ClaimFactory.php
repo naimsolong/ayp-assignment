@@ -48,6 +48,7 @@ class ClaimFactory extends Factory
             'type' => collect(ClaimTypeEnum::values())->random(),
             'description' => fake()->paragraph(2),
             'date' => $date->format('Y-m-d'),
+            'amount'=> rand(10,100),
             'status'=> $status,
             'submitted_at' => $submitted_at,
             'approved_at' => $approved_at,

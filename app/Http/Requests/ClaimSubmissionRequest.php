@@ -26,7 +26,8 @@ class ClaimSubmissionRequest extends FormRequest
         return [
             'type' => ['required', new Enum(ClaimTypeEnum::class)],
             'date' => ['required', 'date'],
-            'description' => ['sometimes']
+            'description' => ['sometimes'],
+            'amount' => ['required', 'integer'],
         ];
     }
 }

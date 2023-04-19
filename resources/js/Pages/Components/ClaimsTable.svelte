@@ -31,6 +31,9 @@
                     Status
                 </th>
                 <th scope="col" class="px-6 py-3">
+                    Amount
+                </th>
+                <th scope="col" class="px-6 py-3">
                     <span class="sr-only">Edit</span>
                 </th>
             </tr>
@@ -49,6 +52,9 @@
                 </td>
                 <td class="px-6 py-4 {statusBackgroundColor(row.status)} font-bold">
                     {row.display_status}
+                </td>
+                <td class="px-6 py-4 {statusBackgroundColor(row.status)} font-bold">
+                    {row.amount}
                 </td>
                 <td class="px-6 py-4 text-right">
                     {#if edit_url != '' && row.status == 'D' && row.submitted_at == null}

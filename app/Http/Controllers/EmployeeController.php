@@ -12,7 +12,7 @@ class EmployeeController extends Controller
 {
     public function dashboard()
     {
-        $claim = Claim::select('id', 'type', 'description', 'date', 'status', 'submitted_at')->orderByDesc('date')->paginate(10);
+        $claim = Claim::select('id', 'type', 'description', 'date', 'amount', 'status', 'submitted_at')->orderByDesc('date')->paginate(10);
         
         return Inertia::render('Employee/Dashboard', [
             'claims' => $claim
@@ -28,7 +28,7 @@ class EmployeeController extends Controller
             else
                 return $item;
         })->only([
-            'type', 'date', 'description'
+            'type', 'date', 'description', 'amount'
         ])->toArray());
 
         // TODO: Redirect back
@@ -53,7 +53,7 @@ class EmployeeController extends Controller
             else
                 return $item;
         })->only([
-            'type', 'date', 'description'
+            'type', 'date', 'description', 'amount'
         ])->toArray());
 
         // TODO: Redirect back
