@@ -56,8 +56,10 @@ jobs:
 
     - name: Execute tests (Unit and Feature tests) via Pest for ${{ matrix.module }} Module
       run: |
-        php -r "file_exists('.env') || copy('.env.example', '.env');"
+        php -r "file_exists('.env') || copy('.env.github', '.env');"
         php artisan key:generate
+        php artisan migrate
+        php artisan db:seed
         php artisan clear-compiled
         php artisan optimize
         php artisan config:cache
