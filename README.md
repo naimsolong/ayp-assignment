@@ -84,7 +84,13 @@ The only requirement is install [Docker](https://docs.docker.com/)
     php artisan route:list
     ```
 
-    2.4 Run test
+    2.4 Seed some fake data
+
+    ```
+    php artisan db:seed
+    ```
+
+    2.5 Run test
 
     ```
     php artisan test
