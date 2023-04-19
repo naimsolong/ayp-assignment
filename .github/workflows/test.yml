@@ -61,8 +61,6 @@ jobs:
         php artisan migrate
         php artisan db:seed
         php artisan config:cache
-        php artisan route:clear
-        php artisan optimize
+        php artisan route:cache
         php artisan about
-        php artisan serve --port=8000
         php artisan test
