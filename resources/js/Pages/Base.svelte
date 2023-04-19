@@ -1,9 +1,11 @@
-
+<script>
+    import { inertia, Link } from '@inertiajs/svelte'
+</script>
 
 <div class="flex flex-row items-center justify-center py-20 px-20">
     <!-- centered content -->
   
-    <a href="/" class="m-5 block max-w-sm p-6 bg-white border border-gray-200 rounded-lg shadow hover:bg-gray-100">
+    <a href="/dashboard/employee" use:inertia class="m-5 block max-w-sm p-6 bg-white border border-gray-200 rounded-lg shadow hover:bg-gray-100">
         <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900">Employee</h5>
         <p class="font-normal text-gray-700">Here is dashboard for employee view. Employee are able to:</p>
         <ul class="list-disc ml-4 font-normal">
@@ -12,7 +14,7 @@
         </ul>
     </a>
 
-    <a href="/" class="m-5 block max-w-sm p-6 bg-white border border-gray-200 rounded-lg shadow hover:bg-gray-100">
+    <a href="/dashboard/admin" use:inertia class="m-5 block max-w-sm p-6 bg-white border border-gray-200 rounded-lg shadow hover:bg-gray-100">
         <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900">Admin</h5>
         <p class="font-normal text-gray-700">Here is dashboard for admin or HR view. Admin are able to:</p>
         <ul class="list-disc ml-4 font-normal">

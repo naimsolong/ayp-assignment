@@ -1,6 +1,8 @@
 <?php
 
+use App\Http\Controllers\AdminController;
 use App\Http\Controllers\BaseController;
+use App\Http\Controllers\EmployeeController;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 
@@ -19,4 +21,14 @@ Route::get('/', BaseController::class);
 
 Route::get('/test', function () {
     return Inertia::render('Test');
+});
+
+Route::prefix('dashboard')->group(function() {
+    Route::prefix('employee')->controller(EmployeeController::class)->group(function() {
+        Route::get('/', 'dashboard');
+    });
+
+    Route::prefix('admin')->controller(AdminController::class)->group(function() {
+        Route::get('/', 'dashboard');
+    });
 });
