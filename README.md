@@ -23,13 +23,9 @@ Side note: This system is not expecting any approval level at this point, meanin
 
 ## **Additional packages used**
 
-
-
 - [Laravel Octane](https://laravel.com/docs/10.x/octane)
 - [Spatie Ray](https://spatie.be/docs/ray/v1/introduction)
-
 - [TailwindCSS](https://tailwindcss.com)
-
 - [Chokidar](https://github.com/paulmillr/chokidar)
 
 ---
@@ -47,8 +43,9 @@ The only requirement is install [Docker](https://docs.docker.com/)
     git clone https://github.com/naimsolong/ayp-assignment.git
     ```
 
-2. Copy environment file
+2. Go to project directory and copy environment file
     ```
+    cd ayp-assignment
     cp .env.example .env
     ```
 
