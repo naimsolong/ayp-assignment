@@ -1,27 +1,27 @@
 #!/usr/bin/env bash
 
 # Check if this repo is initial setup or not
-initial=false
-if [ ! -f "vendor/autoload.php" ] || [ ! -f "node_modules/.package-lock.json" ]; then
-    initial=true
-fi
+# initial=false
+# if [ ! -f "vendor/autoload.php" ] || [ ! -f "node_modules/.package-lock.json" ]; then
+#     initial=true
+# fi
 
 # Install required composer and npm packages
 composer install --no-progress --no-interaction \
 && npm install --silent
 
 # Generate key if this initial setup
-if [ ! initial ]; then
-    php artisan key:generate
-fi
+# if [ ! initial ]; then
+#     php artisan key:generate
+# fi
 
 # Run required command and checking before running web app
 php artisan migrate \
 && php artisan clear-compiled \
 && php artisan config:clear \
 && php artisan route:clear \
-&& php artisan optimize \
-&& php artisan test
+&& php artisan test \
+&& php artisan optimize
 
 # Start required services to run the web app
 exec /usr/bin/supervisord -c /etc/supervisor/conf.d/supervisord.conf
