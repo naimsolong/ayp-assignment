@@ -2,34 +2,57 @@
 
 namespace App\Http\Controllers;
 
-use App\Enums\ClaimTypeEnum;
 use App\Http\Requests\ClaimSubmissionRequest;
 use App\Models\Claim;
+use App\Services\ClaimService;
 use Illuminate\Http\Request;
+use Illuminate\Support\Collection;
 use Inertia\Inertia;
 
 class EmployeeController extends Controller
 {
-    public function dashboard()
-    {
-        $claim = Claim::select('id', 'type', 'description', 'date', 'amount', 'status', 'submitted_at')->orderByDesc('date')->paginate(10);
-        
-        return Inertia::render('Employee/Dashboard', [
-            'claims' => $claim
-        ]);
-    }
+    public function __construct(
+        protected $_service = new ClaimService()
+    ) { }
 
-    public function claimDrafting(ClaimSubmissionRequest $request)
+    // Had to transform due Svelte will return null if value is empty string *facepalm*
+    protected function transformDraftData(Collection $data)
     {
-        // Had to transform due Svelte will return null if value is empty string *facepalm*
-        Claim::create($request->collect()->transform(function($item, $key) {
+        return $data->transform(function($item, $key) {
             if($key == 'description' && is_null($item)) 
                 return '';
             else
                 return $item;
         })->only([
             'type', 'date', 'description', 'amount'
-        ])->toArray());
+        ])->toArray();
+    }
+
+    // Had to transform due Svelte will return null if value is empty string *facepalm*
+    protected function transformSubmitData(Collection $data)
+    {
+        return $data->transform(function($item, $key) {
+            if($key == 'description' && is_null($item)) 
+                return '';
+            else
+                return $item;
+        })->only([
+            'type', 'date', 'description', 'amount'
+        ])->merge([
+            'submitted_at' => now()
+        ])->toArray();
+    }
+
+    public function dashboard()
+    {
+        return Inertia::render('Employee/Dashboard', [
+            'claims' => $this->_service->selectModel()->orderByModel(order: 'desc')->paginateModel()
+        ]);
+    }
+
+    public function claimDrafting(ClaimSubmissionRequest $request)
+    {
+        $this->_service->createModel($this->transformDraftData($request->collect()));
 
         // TODO: Redirect back
         return redirect('/dashboard/employee');
@@ -37,17 +60,7 @@ class EmployeeController extends Controller
 
     public function claimSubmission(ClaimSubmissionRequest $request)
     {
-        // Had to transform due Svelte will return null if value is empty string *facepalm*
-        Claim::create($request->collect()->transform(function($item, $key) {
-            if($key == 'description' && is_null($item)) 
-                return '';
-            else
-                return $item;
-        })->only([
-            'type', 'date', 'description', 'amount'
-        ])->merge([
-            'submitted_at' => now()
-        ])->toArray());
+        $this->_service->createModel($this->transformSubmitData($request->collect()));
 
         // TODO: Redirect back
         return redirect('/dashboard/employee');
@@ -55,24 +68,14 @@ class EmployeeController extends Controller
     
     public function submit()
     {
-        $types = ClaimTypeEnum::dropdown();
-
         return Inertia::render('Employee/Submit', [
-            'types' => $types
+            'types' => $this->_service->getTypeDropdown()
         ]);
     }
 
     public function claimRedraft(Claim $claim, ClaimSubmissionRequest $request)
     {
-        // Had to transform due Svelte will return null if value is empty string *facepalm*
-        $claim->update($request->collect()->transform(function($item, $key) {
-            if($key == 'description' && is_null($item)) 
-                return '';
-            else
-                return $item;
-        })->only([
-            'type', 'date', 'description', 'amount'
-        ])->toArray());
+        $this->_service->setModel($claim)->updateModel($this->transformDraftData($request->collect()));
 
         // TODO: Redirect back
         return redirect('/dashboard/employee');
@@ -80,17 +83,7 @@ class EmployeeController extends Controller
 
     public function claimResubmit(Claim $claim, ClaimSubmissionRequest $request)
     {
-        // Had to transform due Svelte will return null if value is empty string *facepalm*
-        $claim->update($request->collect()->transform(function($item, $key) {
-            if($key == 'description' && is_null($item)) 
-                return '';
-            else
-                return $item;
-        })->only([
-            'type', 'date', 'description', 'amount'
-        ])->merge([
-            'submitted_at' => now()
-        ])->toArray());
+        $this->_service->setModel($claim)->updateModel($this->transformSubmitData($request->collect()));
 
         // TODO: Redirect back
         return redirect('/dashboard/employee');
@@ -98,11 +91,9 @@ class EmployeeController extends Controller
     
     public function edit(Claim $claim)
     {
-        $types = ClaimTypeEnum::dropdown();
-
         return Inertia::render('Employee/Edit', [
             'claim' => $claim,
-            'types' => $types
+            'types' => $this->_service->getTypeDropdown()
         ]);
     }
 }
